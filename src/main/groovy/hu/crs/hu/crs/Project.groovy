@@ -4,7 +4,6 @@ class Project {
     def name
     def version
 
-
     @Override
     String toString() {
         return "Project{" +
