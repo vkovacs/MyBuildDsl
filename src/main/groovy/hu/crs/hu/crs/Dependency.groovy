@@ -11,9 +11,8 @@ class Dependency {
         this.version = version
     }
 
-
     @Override
-    public String toString() {
+    String toString() {
         return "Dependency{" +
                 "groupId='" + groupId + '\'' +
                 ", artifactId='" + artifactId + '\'' +

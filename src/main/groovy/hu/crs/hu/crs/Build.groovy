@@ -3,9 +3,9 @@ package hu.crs.hu.crs
 class Build {
     static def myProject = new Project()
 
-    static void project(Closure closure) {
+    static void project(@DelegatesTo(value = Project, strategy = Closure.DELEGATE_FIRST) Closure closure) {
         def code = closure.rehydrate(myProject, this, this)
-        code.resolveStrategy = Closure.DELEGATE_ONLY
+        code.resolveStrategy = Closure.DELEGATE_FIRST
         code()
     }
 }

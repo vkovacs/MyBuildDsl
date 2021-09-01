@@ -3,25 +3,16 @@ package hu.crs.hu.crs
 class Project {
     def name
     def version
-    List<Dependency> dependencies = new ArrayList<>()
+    Dependencies dependencies = new Dependencies()
 
-    void dependencies(Dependency... dependencies) {
-        for (Dependency dependency : dependencies) {
-            this.dependencies.add(dependency)
-        }
+    void dependencies(@DelegatesTo(value = Dependencies, strategy = Closure.DELEGATE_FIRST) Closure closure) {
+        closure.delegate = dependencies
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure()
     }
-
-    List<Dependency> getDependencies() {
-        return dependencies
-    }
-
-    void setDependencies(List<Dependency> dependencies) {
-        this.dependencies = dependencies
-    }
-
 
     @Override
-    public String toString() {
+    String toString() {
         return "Project{" +
                 "name=" + name +
                 ", version=" + version +
